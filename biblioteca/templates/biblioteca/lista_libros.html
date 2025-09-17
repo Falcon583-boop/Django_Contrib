@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Biblioteca - Lista de Libros</title>
+</head>
+<body>
+    <h1>Lista de Libros</h1>
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <ul>
+    {% for libro in libros %}
+        <li>{{ libro.titulo }} - {{ libro.autor.nombre }} {% if libro.disponible %}(Disponible){% else %}(No disponible){% endif %}
+            - <a href="{% url 'agregar_a_carrito' libro.id %}">Agregar al carrito</a>
+        </li>
+    {% empty %}
+        <li>No hay libros</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
